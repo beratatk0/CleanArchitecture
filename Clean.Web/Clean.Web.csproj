@@ -10,4 +10,9 @@
     <ProjectReference Include="..\Clean.Service\Clean.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="AutoMapper.Contrib.Autofac.DependencyInjection" Version="7.2.0" />
+  </ItemGroup>
+
 </Project>
