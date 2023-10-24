@@ -3,32 +3,46 @@
 }
 @model List<ProductWithCategoryDTO>
 
-<h1>@ViewData["Title"]</h1>
 
-<table class="table table-striped">
+<div>
+    <h1>@ViewData["Title"]</h1>
 
-    <thead>
-        <tr>
-            <td>Id</td>
-            <td>Name</td>
-            <td>Stock</td>
-            <td>Price</td>
-            <td>Category Id</td>
-            <td>Created Date</td>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <table class="table table-striped">
+
+        <thead>
             <tr>
-                <td>@item.Id</td>
-                <td>@item.Name</td>
-                <td>@item.Stock</td>
-                <td>@item.Price</td>
-                <td>@item.CategoryId</td>
-                <td>@item.CreationDate</td>
+                <td>Id</td>
+                <td>Name</td>
+                <td>Stock</td>
+                <td>Price</td>
+                <td>Category</td>
+                <td>Created Date</td>
+                <td>Actions</td>
             </tr>
-        }
-    </tbody>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.Stock</td>
+                    <td>@item.Price</td>
+                    <td>@item.Category.Name</td>
+                    <td>@item.CreationDate</td>
+                    <td>
+                        <a class="btn btn-outline-primary" asp-controller="Product" asp-action="Update" asp-route-id="@item.Id">Edit</a>
+                        <a class="btn btn-outline-danger" asp-controller="Product" asp-action="Remove" asp-route-id="@item.Id">Remove</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
 
-</table>
+
+    </table>
+
+    <div>
+        <input class="btn btn-outline-success" type="button" value="Add Item" onclick="@("window.location.href='" + @Url.Action("Save", "Product") + "'");" />
+    </div>
+
+</div>
