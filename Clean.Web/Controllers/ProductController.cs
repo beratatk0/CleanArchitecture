@@ -48,7 +48,7 @@ namespace Clean.Web.Controllers
             return View();
 
         }
-
+        [ServiceFilter(typeof(NotFoundFilter<Product>))]
         public async Task<IActionResult> Update(int id)
         {
             var product = await _service.GetByIdAsync(id);
@@ -70,7 +70,7 @@ namespace Clean.Web.Controllers
 
             var categories = await _categoryService.GetAllAsync();
             var categoryDto = _mapper.Map<List<CategoryDTO>>(categories);
-            ViewBag.Categories = new SelectList(categoryDto, "Id", "Name",product.CategoryId);
+            ViewBag.Categories = new SelectList(categoryDto, "Id", "Name", product.CategoryId);
             return View(product);
 
         }
@@ -80,6 +80,11 @@ namespace Clean.Web.Controllers
             var product = await _service.GetByIdAsync(id);
             await _service.RemoveAsync(product);
             return RedirectToAction(nameof(Index));
+        }
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error(ErrorViewModel errorViewModel)
+        {
+            return View(errorViewModel);
         }
     }
 }

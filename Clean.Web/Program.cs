@@ -3,6 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using Clean.Repo;
 using Clean.Service.Mapper;
 using Clean.Service.Validators;
+using Clean.Web;
 using Clean.Web.Modules;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -22,9 +23,10 @@ builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(builder.Configur
     option.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
 }));
 
+builder.Services.AddScoped(typeof(NotFoundFilter<>));
+
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterModule(new RepoServiceModule()));
-
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
 
