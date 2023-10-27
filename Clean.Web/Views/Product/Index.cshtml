@@ -1,11 +1,11 @@
-﻿@{
-    ViewData["Title"] = "Index";
-}
+﻿
 @model List<ProductWithCategoryDTO>
 
 
 <div>
-    <h1>@ViewData["Title"]</h1>
+    <div>
+        <input class="btn btn-outline-success" style="float:right;" type="button" value="Add Item" onclick="@("window.location.href='" + @Url.Action("Save", "Product") + "'");" />
+    </div>
 
     <table class="table table-striped">
 
@@ -41,8 +41,6 @@
 
     </table>
 
-    <div>
-        <input class="btn btn-outline-success" type="button" value="Add Item" onclick="@("window.location.href='" + @Url.Action("Save", "Product") + "'");" />
-    </div>
+
 
 </div>

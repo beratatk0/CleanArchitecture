@@ -5,6 +5,7 @@ using Clean.Service.Mapper;
 using Clean.Service.Validators;
 using Clean.Web;
 using Clean.Web.Modules;
+using Clean.Web.Services;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +30,14 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterModule(new RepoServiceModule()));
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
+builder.Services.AddHttpClient<ProductApiService>(opt =>
+{
+    opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
+builder.Services.AddHttpClient<CategoryApiService>(opt =>
+{
+    opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
 
 var app = builder.Build();
 

@@ -38,7 +38,8 @@ namespace Clean.API.Controllers
         [HttpGet("[action]")]
         public async Task<IActionResult> GetProductsWithCategory()
         {
-            return CreateActionResult(await _service.GetProductsWithCategory());
+            var items = await _service.GetProductsWithCategory();
+            return CreateActionResult(items);
         }
         [HttpPost]
         public async Task<IActionResult> Save(ProductDTO product)

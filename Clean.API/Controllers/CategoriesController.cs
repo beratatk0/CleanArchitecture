@@ -18,19 +18,18 @@ namespace Clean.API.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("[action]")]
+        [HttpGet("[action]/{categoryId}")]
         public async Task<IActionResult> GetCategoryWithProductsById(int categoryId)
         {
             return CreateActionResult(await _categoryService.GetCategoryWithProductsById(categoryId));
         }
-
-        //[HttpGet]
-        //public async Task<IActionResult> All()
-        //{
-        //    var categories = await _service.GetAllAsync();
-        //    var categoryDtos = _mapper.Map<List<CategoryDTO>>(categories.ToList());
-        //    return CreateActionResult(CustomResponseDTO<List<CategoryDTO>>.Success(200, categoryDtos));
-        //}
+        [HttpGet]
+        public async Task<IActionResult> All()
+        {
+            var categories = await _categoryService.GetAllAsync();
+            var categoryDtos = _mapper.Map<List<CategoryDTO>>(categories.ToList());
+            return CreateActionResult(CustomResponseDTO<List<CategoryDTO>>.Success(200, categoryDtos));
+        }
         //[HttpGet("{id}")]
         //public async Task<IActionResult> GetById(int id)
         //{
