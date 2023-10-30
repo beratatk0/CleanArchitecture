@@ -13,17 +13,17 @@ namespace Clean.Web.Services
 
         public async Task<List<ProductWithCategoryDTO>> GetProductsWithCategory()
         {
-            var response = await _httpClient.GetFromJsonAsync<CustomResponseDTO<List<ProductWithCategoryDTO>>>("Products/GetProductsWithCategory");
+            var response = await _httpClient.GetFromJsonAsync<CustomResponseDTO<List<ProductWithCategoryDTO>>>("ProductsDto/GetProductsWithCategory");
             return response.Data;
         }
         public async Task<ProductDTO> GetByIdAsync(int id)
         {
-            var response = await _httpClient.GetFromJsonAsync<CustomResponseDTO<ProductDTO>>($"Products/{id}");
+            var response = await _httpClient.GetFromJsonAsync<CustomResponseDTO<ProductDTO>>($"ProductsDto/{id}");
             return response.Data;
         }
         public async Task<ProductDTO> SaveAsync(ProductDTO product)
         {
-            var response = await _httpClient.PostAsJsonAsync("Products", product);
+            var response = await _httpClient.PostAsJsonAsync("ProductsDto", product);
             if (response.IsSuccessStatusCode)
             {
                 return null;
@@ -34,12 +34,12 @@ namespace Clean.Web.Services
         }
         public async Task<bool> UpdateAsync(ProductDTO product)
         {
-            var response = await _httpClient.PutAsJsonAsync("Products", product);
+            var response = await _httpClient.PutAsJsonAsync("ProductsDto", product);
             return response.IsSuccessStatusCode;
         }
         public async Task<bool> RemoveAsync(int id)
         {
-            var response = await _httpClient.DeleteAsync($"Products/{id}");
+            var response = await _httpClient.DeleteAsync($"ProductsDto/{id}");
             return response.IsSuccessStatusCode;
         }
     }

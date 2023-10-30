@@ -66,12 +66,6 @@ namespace Clean.API.Controllers
             await _service.RemoveAsync(product);
             return CreateActionResult(CustomResponseDTO<NoContentDTO>.Success(204));
         }
-        //[HttpGet]
-        //public async Task<IActionResult> GetCategory(Product product)
-        //{
-
-
-        //}
 
     }
 }
