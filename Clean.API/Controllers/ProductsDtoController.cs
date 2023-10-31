@@ -66,6 +66,7 @@ namespace Clean.API.Controllers
         [HttpGet("[action]")]
         public async Task<IActionResult> Any(int id)
         {
+
             return CreateActionResult(await _service.AnyAsync(x => x.Id == id));
         }
     }
