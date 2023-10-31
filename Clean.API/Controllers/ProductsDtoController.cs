@@ -52,5 +52,21 @@ namespace Clean.API.Controllers
         {
             return CreateActionResult(await _service.RemoveAsync(id));
         }
+
+        [HttpPost("SaveAll")]
+        public async Task<IActionResult> SaveAll(List<ProductCreateDTO> products)
+        {
+            return CreateActionResult(await _service.AddRangeAsync(products));
+        }
+        [HttpDelete("RemoveRange")]
+        public async Task<IActionResult> DeleteRange(List<int> ids)
+        {
+            return CreateActionResult(await _service.RemoveRangeAsync(ids));
+        }
+        [HttpGet("[action]")]
+        public async Task<IActionResult> Any(int id)
+        {
+            return CreateActionResult(await _service.AnyAsync(x => x.Id == id));
+        }
     }
 }

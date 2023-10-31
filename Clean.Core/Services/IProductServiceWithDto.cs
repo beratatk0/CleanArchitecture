@@ -14,6 +14,8 @@ namespace Clean.Core.Services
 
         Task<CustomResponseDTO<ProductDTO>> AddAsync(ProductCreateDTO dto);
 
+        Task<CustomResponseDTO<List<ProductDTO>>> AddRangeAsync(List<ProductCreateDTO> dtos);
+
         Task<CustomResponseDTO<NoContentDTO>> UpdateAsync(ProductUpdateDTO dto);
 
     }

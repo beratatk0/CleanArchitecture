@@ -19,6 +19,7 @@ namespace Clean.Service.Mapper
             CreateMap<ProductUpdateDTO, Product>();
             CreateMap<Product, ProductWithCategoryDTO>();
             CreateMap<Category, CategoryWithProductsDTO>();
+            CreateMap<ProductCreateDTO, ProductDTO>();
             CreateMap<ProductCreateDTO, Product>();
         }
     }

@@ -38,6 +38,15 @@ namespace Clean.Service.Services
             return CustomResponseDTO<ProductDTO>.Success(StatusCodes.Status200OK, newDto);
         }
 
+        public async Task<CustomResponseDTO<List<ProductDTO>>> AddRangeAsync(List<ProductCreateDTO> dtos)
+        {
+            var newProducts = _mapper.Map<List<Product>>(dtos);
+            await _repository.AddRangeAsync(newProducts);
+            await _unitOfWork.CommitASync();
+            var newDtos = _mapper.Map<List<ProductDTO>>(dtos);
+            return CustomResponseDTO<List<ProductDTO>>.Success(StatusCodes.Status200OK, newDtos);
+        }
+
         public async Task<CustomResponseDTO<NoContentDTO>> UpdateAsync(ProductUpdateDTO dto)
         {
             var product = _mapper.Map<Product>(dto);
